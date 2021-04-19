@@ -1,0 +1,462 @@
+<!--COPYRIGHT MOHD JAMIL
+    instagram:https://www.instagram.com/_mohdjamil
+    linkedin:https://www.linkedin.com/in/mohd-jamil-35508a1b9
+    github:https://www.github.com/mohdjameel2412
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <title>Cyber-Fraud-Detector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link type="image/x-icon" rel="icon"
+    href="https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-56bae-cropped-black-white-and-triangle-data-chase-games-logo-2-2.png?w=192">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="628">
+  <link rel="stylesheet" href="assets/css/main_v%3D1.0.15.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- Style for logout button -->
+  <style>
+    .w3-button {
+      max-width: 100px;
+    }
+  </style>
+  <!-- Style end-->
+</head>
+
+<body>
+
+  <!-- Firebase Configurations
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.2.5/firebase-app.js"></script>
+
+  <script src="/__/firebase/8.2.5/firebase-analytics.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+  <!--Firebase configuration Ends-->
+
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <nav>
+    <ul>
+      <span class="nav-logo"><a href="https://certifiedblackhat.in/"></a>
+        <img width="80" height="80"
+          src="https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-untitled-design7.png" class="custom-logo"
+          alt="Certified Blackhat" data-attachment-id="684"
+          data-permalink="https://certifiedblackhat.in/cropped-untitled-design7-png/"
+          data-orig-file="https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-untitled-design7.png"
+          data-orig-size="80,80" data-comments-opened="1"
+          data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
+          data-image-title="cropped-untitled-design7.png" data-image-description="<p>https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-untitled-design7.png</p>
+          "
+          data-medium-file="https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-untitled-design7.png?w=80"
+          data-large-file="https://certifiedblackhatin.files.wordpress.com/2021/03/cropped-untitled-design7.png?w=80"
+          scale="0">
+      </span>
+      <span class="nav-right"><a href="https://certifiedblackhat.in/">CERTIFIED BLACKHAT</a></span>
+      <span>
+        <p id="description">Reengineering CyberSecurity</p>
+      </span>
+      <!--
+
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+-->
+    </ul>
+  </nav>
+
+
+  <!--Visualizer -->
+  <main class="container">
+    <div id="map" class="map">
+      <div class="sf-hero-score" style="opacity: 1;">
+        <span class="banner"
+          style="color:white;position:absolute; left:5%;top:250px; justify-content:center;font-family:var(--font3); height:100px;width:400px;text-transform:uppercase;font-size:1.5em;">
+          <span id="change"></span>
+        </span>
+        <div class="sf-hero-sphere">
+          <div class="sf-hero-sphere-video">
+            <video autoplay="autoplay" loop="loop" src="assets/video/1.mp4"></video>
+            <div id="graph" class="sf-hero-sphere-video-overlay -color-2"></div>
+          </div>
+          <div class="sf-hero-sphere-description">
+            <div class="sf-hero-sphere-label">Vulnerability</div>
+            <div id="myBar" class="sf-hero-sphere-value">0%</div>
+            <div class="sf-hero-sphere-info">
+              Risk:<span id="Risk" class="sf-hero-sphere-info-val -medium">Medium</span>
+            </div>
+          </div>
+          <div class="sf-hero-sphere-points-item -first" data-label="Technology score">
+            <div class="sf-hero-sphere-points-circle">
+              <span></span>
+              <i id="osName" style="color: white;position: relative;left: 30px;">Technology</i>
+            </div>
+          </div>
+          <div class="sf-hero-sphere-points-item -second" data-label="Technology score">
+            <div class="sf-hero-sphere-points-circle">
+              <span></span>
+              <i id="platformModel"
+                style="color: white;position: relative;right:10px;top: 30px;min-width: 100px;">Model</i>
+            </div>
+          </div>
+          <div class="sf-hero-sphere-points-item -third" data-label="Technology score">
+            <div class="sf-hero-sphere-points-circle">
+              <span></span>
+              <i id="platformName" style="color: white;position: relative;left: 10px;top: 30px;">Platform</i>
+            </div>
+          </div>
+          <div class="sf-hero-sphere-points-item -fourth" data-label="Technology score">
+            <div class="sf-hero-sphere-points-circle">
+              <span></span>
+              <i id="platformOs" style="color: white;position: relative; left:-30px;bottom: 20px;">OS</i>
+            </div>
+          </div>
+          <div class="sf-hero-sphere-points-item -fifth" data-label="Technology score">
+            <div class="sf-hero-sphere-points-circle">
+              <span></span>
+              <i id="browserVersion" style="color: white;position: relative;left: -10px;bottom: 20px;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Visualizer Ends-->
+      <p id="info" class="info">
+        <img src="/assets/images/main.png" id="logo" class="info">
+        <button id="logout" style="border-radius: 1mm;" class="w3-btn w3-ripple w3-red">logout</button>
+      </p>
+      <!--Logo and Logout Ends-->
+
+      <!--Device info and Assets-->
+      <div class="footer">
+
+        <div id="device" class="device">
+          <br>
+          <div class="current"><strong>Country: </strong><span id="country"></span></div>
+          <div class="current"><strong>State: </strong><span id="state"></span></div>
+          <div class="current"><strong>City: </strong><span id="city"></span></div>
+          <div class="current"><strong>longitude: </strong><span id="longitude"></span></div>
+          <div class="current"><strong>latitude: </strong><span id="latitude"></span></div>
+          <div class="current"><strong>IP: </strong><span id="ip">223.225.242.239</span></div>
+          <br>
+          <div class="current"><b>OS Version : </b><span id="osVersion"></span></div>
+          <div class="current"><b>Browser : </b><span id="browserName"></span></div>
+          <div class="current"><b>Device Vendor : </b><span id="deviceVendor"></span></div>
+          <div class="current"><b>Device Type : </b><span id="deviceType"></span></div>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+      <!--device info Assets Ends-->
+    </div>
+  </main>
+  <!--Date Time javascript-->
+  <script src="/assets/js/index.js"></script>
+  <script src="/assets/js/script.js"></script>
+  <!--device detection script Ends-->
+  <!--location jQuery-->
+  <script>
+    $.ajax({
+      url: "https://geolocation-db.com/jsonp",
+      jsonpCallback: "callback",
+      dataType: "jsonp",
+      success: function (location) {
+        $('#country').html(location.country_name);
+        $('#state').html(location.state);
+        $('#city').html(location.city);
+        $('#latitude').html(location.latitude);
+        $('#longitude').html(location.longitude);
+        $('#ip').html(location.IPv4);
+      }
+    });
+
+  </script>
+  <!--location jQuery Ends-->
+  <script>
+    var text = ["<b>Cyber Vulnerability :</b><br><p>the possibility of being prone to a threat , or of being attackeed virtually </p>", "<b>Device Detection :</b><br><p>detects device specific information like model, type, operating system detection</p>", "<b>Location Tracing :</b><br><p>based on coordinates of your device & tracing internet protocol address</p>"];
+    var counter = 0;
+    var elem = document.getElementById("change");
+    var inst = setInterval(change, 5000);
+
+    function change() {
+      elem.innerHTML = text[counter];
+      counter++;
+      if (counter >= text.length) {
+        counter = 0;
+        // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+      }
+    }
+  </script>
+
+
+
+
+
+  <!--UAparser-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.19/ua-parser.min.js"></script>
+
+  <script>
+    var ua = new UAParser();
+    var result = ua.getResult().device;
+    console.log(result);
+
+    //result.vendor
+
+    var Type = result.type;
+    if (Type == "mobile" || Type == "tablet") {
+      document.getElementById('deviceType').innerHTML = Type;
+    }
+    else {
+      document.getElementById('deviceType').innerHTML = "Desktop/Laptop";
+    }
+  </script>
+  <!--
+  document.getElementById('deviceModel').innerHTML = result.model ;
+
+-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js"></script>
+  <script>
+    document.getElementById('platformModel').innerHTML = platform.product;
+    document.getElementById('platformName').innerHTML = platform.name;
+    document.getElementById('platformOs').innerHTML = platform.os;
+
+    var model = document.getElementById('platformModel').innerHTML;
+
+    if (model == "") {
+      document.getElementById('platformModel').innerHTML = 'PC';
+    }
+    else {
+      model = platform.product;
+    }
+    var str = platform.product;
+
+    if (str == null) {
+      document.getElementById('deviceVendor').innerHTML = "microsoft";
+    } else if (str.startsWith('Redmi') == true) {
+      document.getElementById('deviceVendor').innerHTML = "Xiaomi";
+    }
+    //add else if condition for your device As shown above ,if it dosent detect Vendor/Manufacturer
+
+    else if (str.startsWith('Mi') == true) {
+      document.getElementById('deviceVendor').innerHTML = "Xiaomi";
+    }
+    else if (str.startsWith('RMX') == true) {
+      document.getElementById('deviceVendor').innerHTML = "Realme";
+    }
+    else {
+      document.getElementById('deviceVendor').innerHTML = result.vendor;
+
+    }
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCXFUbGyOPO5mGJ8dfBoVXfZ0IQIlrOi2s",
+      authDomain: "cyber-fraud-detector.firebaseapp.com",
+      projectId: "cyber-fraud-detector",
+      storageBucket: "cyber-fraud-detector.appspot.com",
+      messagingSenderId: "834489215383",
+      appId: "1:834489215383:web:a56abc84494d2f22fb7cd2",
+      measurementId: "G-NBBR6NWGB1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //-------------------------------------Authentication------------------------------//
+
+    //---------------------------------Real Time Database------------------------------------//
+
+    document.getElementById('logout').addEventListener('click', LogoutUser)
+
+    let provider = new firebase.auth.GoogleAuthProvider()
+
+    function checkAuthState() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          move();
+          setTimeout(
+            function () {
+              Ready(),
+                firebase.database().ref('data/' + datetime).set({
+                  longitude,
+                  latitude,
+                  country,
+                  ip,
+                  state,
+                  city,
+                  osName,
+                  osVersion,
+                  browserName,
+                  browserVersion,
+                  deviceVendor,
+                  platformName,
+                  platformOs,
+                  platformodel,
+                  devicetype,
+                  vulnerability,
+                  datetime,
+
+                })
+            }, 10000);
+
+
+        } else {
+          window.location = "index.html"
+
+
+        }
+      })
+    }
+    checkAuthState()
+
+    function LogoutUser() {
+      console.log('Logout Btn Call')
+      firebase.auth().signOut().then(() => {
+        window.location = 'index.html';
+        alert("logged out");
+
+
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+    //--------------------------------------RealTime Database-------------------------------------------//
+    var i = document.getElementById('osVersion').innerHTML;
+
+
+    function move() {
+      if (i <= 10 && i >= 9) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 0;
+        var id = setInterval(frame, 5);
+        function frame() {
+          if (width >= 40) {
+            clearInterval(id);
+            i = 0;
+            document.getElementById('graph').className = "sf-hero-sphere-video-overlay -color-5";
+            document.getElementById('Risk').innerHTML = "Low"
+            document.getElementById('Risk').className = "sf-hero-sphere-info-val -low";
+
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+      else if (i <= 9 && i >= 8) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 20;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 50) {
+            clearInterval(id);
+            i = 0;
+            document.getElementById('graph').className = "sf-hero-sphere-video-overlay -color-4";
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+      else if (i <= 7 && i >= 6) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 20;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 70) {
+            clearInterval(id);
+            i = 0;
+            document.getElementById('graph').className = "sf-hero-sphere-video-overlay -color-3";
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+      else if (i <= 5 && i >= 4) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 20;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 80) {
+            clearInterval(id);
+            i = 0;
+            document.getElementById('graph').className = "sf-hero-sphere-video-overlay -color-2";
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+      else if (i < 3) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 20;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 99) {
+            clearInterval(id);
+            i = 0;
+            document.getElementById('graph').className = "sf-hero-sphere-video-overlay -color-1";
+            document.getElementById('Risk').innerHTML = "High"
+            document.getElementById('Risk').className = "sf-hero-sphere-info-val -very-high";
+          } else {
+            width++;
+            elem.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+    }
+    var longitude, latitude, country, state, city, ip, datetime, deviceVendor, osName, osVersion, browserName, browserVersion, platformName, platformodel, platformOs, vulnerability;
+
+    function Ready() {
+      longitude = document.getElementById('longitude').innerHTML;
+      latitude = document.getElementById('latitude').innerHTML;
+      country = document.getElementById('country').innerHTML;
+      state = document.getElementById('state').innerHTML;
+      city = document.getElementById('city').innerHTML;
+      ip = document.getElementById('ip').innerHTML;
+      datetime = moment().format('lll');
+      deviceVendor = document.getElementById('deviceVendor').innerHTML;
+      osName = document.getElementById('osName').innerHTML;
+      osVersion = document.getElementById('osVersion').innerHTML;
+      browserName = document.getElementById('browserName').innerHTML;
+      browserVersion = document.getElementById('browserVersion').innerHTML;
+      platformName = document.getElementById('platformName').innerHTML;
+      platformodel = document.getElementById('platformModel').innerHTML;
+      platformOs = document.getElementById('platformOs').innerHTML;
+      devicetype = document.getElementById('deviceType').innerHTML;
+      vulnerability = document.getElementById('myBar').innerHTML;
+
+    }
+  </script>
+</body>
+
+</html>
